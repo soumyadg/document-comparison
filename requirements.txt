@@ -1,0 +1,4 @@
+openai==0.10.2
+python-docx==0.8.11
+rouge-score==0.0.4
+transformers==4.9.2
