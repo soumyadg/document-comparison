@@ -1,5 +1,6 @@
 
 # Document Comparison Tool
+![](llm.png)
 
 ## Project Overview
 
