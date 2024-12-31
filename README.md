@@ -81,7 +81,7 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## Contact
 
-Your Name - [soumya_02@outlook.com](mailto:soumya_02@outlook.com)
+Soumya Dasgupta - [soumya_02@outlook.com](mailto:soumya_02@outlook.com)
 
 Project Link: [https://github.com/your-username/document-comparison](https://github.com/your-username/document-comparison)
 
