@@ -93,7 +93,7 @@ While ROUGE is an excellent tool for evaluating summary quality in many contexts
 
 This documentation provides a comprehensive understanding of the processes and functions involved in the document change summarizer project. By detailing each step and its purpose, users and reviewers can easily follow the operations performed by the script.
 
-
+![](llm2.gif)
 
 ## GIT Project information
 
