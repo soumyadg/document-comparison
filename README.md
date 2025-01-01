@@ -2,6 +2,7 @@
 ![](llm.png)
 
 # Assignment overview documentation: Document Change Summarizer
+#### Jupyter Code in repo: code_jupyter.ipynb
 
 This project involves a script designed to compare two versions of a document and summarize the changes using both GPT-3.5 and BERT models. Below is a step-by-step explanation of the process:
 
@@ -10,55 +11,55 @@ This project involves a script designed to compare two versions of a document an
 The script performs several key functions:
 1. Reads two document versions.
 2. Compares these documents to identify changes.
-3. Summarizes these changes using two different methods: GPT-3.5 and BERT.
+3. Summarizes these changes using two different methods: GPT-3.5 and BERT (alternative method to LLMs).
 4. Formats and presents the summarized changes in a readable format.
 
 ## Detailed Steps
 
 ### 1. **Read the Documents**
-- **Function**: `read_docx(file_path)`
+- **Function**: `Read_docx(file_path)`
 - **Purpose**: To extract non-empty paragraphs from a DOCX file. This helps in processing documents that are structured in paragraphs, skipping empty paragraphs that do not contain useful information.
 - **Input**: File path to the DOCX document.
 - **Output**: List of non-empty paragraphs from the document.
 
 ### 2. **Compare Documents**
-- **Function**: `compare_documents(doc1, doc2)`
+- **Function**: `Compare_documents(doc1, doc2)`
 - **Purpose**: To identify textual changes between two versions of a document. It uses the `difflib.unified_diff` to generate differences in an easily understandable manner.
 - **Input**: Lists of strings (document contents split into lines).
 - **Output**: List of changes detected, marked with '+' for additions or '-' for deletions.
 
 ### 3. **Summarize Changes Using GPT-3.5**
-- **Function**: `summarize_changes(changes, chunk_size=200)`
+- **Function**: `Summarize_changes(changes, chunk_size=200)`
 - **Purpose**: To divide the document changes into manageable chunks and use OpenAI's API to generate summaries for each chunk, which are then combined into a final comprehensive summary.
 - **Input**: List of change strings and a chunk size defining how many characters each chunk will contain.
 - **Output**: A comprehensive summary of all changes combined into one string.
 
 #### Sub-function for Processing Each Chunk
-- **Function**: `process_chunk(chunk)`
+- **Function**: `Process_chunk(chunk)`
 - **Purpose**: To interact with the OpenAI API, sending text to be summarized and receiving the summarized response.
 - **Input**: A chunk of text.
 - **Output**: Summarized version of the chunk or an error message if the process fails.
 
 ### 4. **Further Process the Summary if Needed**
-- **Function**: `second_pass_summary(text)`
-- **Purpose**: Handles a second pass of summarization if the combined text from the initial summaries is too long.
+- **Function**: `Second_pass_summary(text)`
+- **Purpose**: Handles a second pass of summarization as the combined text from the initial summaries are too long.
 - **Input**: Combined text from initial summarizations.
 - **Output**: A final summarized version of the text.
 
 ### 5. **Format Summary into Bullet Points**
-- **Function**: `format_summary_as_points(summary_text)`
+- **Function**: `Format_summary_as_points(summary_text)`
 - **Purpose**: Enhances readability by organizing the summary into clearly defined bullet points, making it easier to scan and comprehend.
 - **Input**: The full text of the summary.
 - **Output**: Formatted summary where each sentence is a bullet point.
 
-### 6. **Summarize Changes Using BERT**
-- **Function**: `summarize_changes_bert(changes)`
+### 6. **Summarize Changes Using BERT - alternative method to LLMs**
+- **Function**: `Summarize_changes_bert(changes)`
 - **Purpose**: Utilizes a BERT model specifically tuned for extractive summarization tasks to summarize the document changes.
 - **Input**: List of textual changes.
 - **Output**: An extractive summary capturing the essence of the changes.
 
 ### 7. **Further Condense BERT Summary**
-- **Function**: `further_condense_summary_bert(text)`
+- **Function**: `Further_condense_summary_bert(text)`
 - **Purpose**: Reduces the length of an already summarized text by applying a higher compression ratio.
 - **Input**: Text to condense further, typically already summarized.
 - **Output**: A more concise version of the input summary, reduced by the specified ratio.
@@ -67,20 +68,12 @@ The script performs several key functions:
 
 The script begins by reading the two document versions and comparing them to detect changes. If changes are found, it summarizes these changes using both GPT-3.5 and BERT models. The summarized changes are then presented in a structured format to enhance understanding and readability.
 
-## Conclusion
-
-This documentation provides a comprehensive understanding of the processes and functions involved in the document change summarizer project. By detailing each step and its purpose, users and reviewers can easily follow the operations performed by the script.
-
 ## Evaluation of Summary Quality: Understanding ROUGE
 
 ### What is ROUGE?
 ROUGE, which stands for Recall-Oriented Understudy for Gisting Evaluation, is a set of metrics used for evaluating automatic summarization of texts as well as machine translation. It works by comparing a computer-generated summary or translation against one or more reference summaries (typically produced by humans).
 
-ROUGE is primarily designed to measure the quality of a summary by counting the number of overlapping units such as n-grams, word sequences, and word pairs between the computational and reference summaries. Commonly used variants of ROUGE are:
-
-- **ROUGE-N**: Measures the overlap of N-grams between the generated and reference texts.
-- **ROUGE-L**: Considers the longest common subsequence between a candidate summary and a set of reference summaries.
-- **ROUGE-S**: Measures skip-bigram co-occurrence statistics, accounting for sentence-level structure similarity naturally.
+ROUGE is primarily designed to measure the quality of a summary by counting the number of overlapping units such as n-grams, word sequences, and word pairs between the computational and reference summaries. Different used variants of ROUGE are ROUGE-N which measures the overlap of N-grams between the generated and reference texts, the ROUGE-L which considers the longest common subsequence between a candidate summary and a set of reference summaries and finall the ROUGE-S which measures skip-bigram co-occurrence statistics, accounting for sentence-level structure similarity naturally.
 
 ### Importance of ROUGE in Summary Evaluation
 ROUGE has become a standard for evaluating summarization tasks because it provides a quantitative measure to assess how close the machine-generated summary is to a human-generated one. This metric is crucial for developing and tuning summarization algorithms, as it allows developers to benchmark their systems and track improvements over time. Using ROUGE, developers can systematically compare the effectiveness of different summarization approaches and refine their algorithms based on empirical data.
@@ -88,24 +81,23 @@ ROUGE has become a standard for evaluating summarization tasks because it provid
 ### Limitation in This Assignment: Lack of Reference Summary
 For this assignment, the application of ROUGE as an evaluative metric is not feasible due to the absence of a reference summary. The ROUGE methodology fundamentally relies on a comparison between the machine-generated summary and a human-written reference. In the context of summarizing document changes, preparing such a reference summary involves manually analyzing the changes between two document versions and synthesizing those changes into a coherent summary.
 
-#### Why a Reference Summary is Not Used:
-- **Time Constraints**: Creating accurate and comprehensive reference summaries is time-consuming, as it requires deep understanding and manual effort.
-- **Resource Limitations**: The lack of available human resources to create reference summaries can be a significant constraint.
-- **Focus of the Assignment**: The primary goal of this assignment is to develop and demonstrate the ability to automate the summarization of document changes without relying on manual efforts, hence focusing more on the technological implementation rather than manual evaluation processes.
+#### Why a Reference Summary is not generated:
+- **Time Constraints**: Creating accurate and comprehensive reference summaries is time-consuming.
+- **Resource Limitations**: The lack of available domain knowledge to create reference summaries is a significant constraint.
+- **Focus of the Assignment**: The primary goal of this assignment is to develop and demonstrate the ability to automate the summarization of document changes without relying on manual efforts, hence this work focusses more on the technological implementation rather than manual evaluation processes.
 
-### Conclusion
+### Estimation conclusion
 While ROUGE is an excellent tool for evaluating summary quality in many contexts, its application is limited in scenarios where no suitable reference summaries are available. In such cases, alternative methods of evaluation, such as user feedback or qualitative analysis, might be more appropriate to assess the effectiveness of summarization algorithms.
 
-## Project Overview
+# Conclusion
+
+This documentation provides a comprehensive understanding of the processes and functions involved in the document change summarizer project. By detailing each step and its purpose, users and reviewers can easily follow the operations performed by the script.
+
+
+
+## GIT Project information
 
 The Document Comparison Tool is designed to assist legal and documentation teams by summarizing and highlighting changes between different versions of documents, specifically focusing on DOCX files. This tool employs a combination of Python libraries and Large Language Models (LLMs), including GPT from OpenAI, to process, compare, and summarize document contents effectively.
-
-## Features
-
-- **Document Reading**: Utilizes `python-docx` to read and extract content from DOCX files.
-- **Change Detection**: Implements `difflib` to detect and outline changes between document versions.
-- **Summarization**: Leverages OpenAI's GPT models to summarize changes in a concise format.
-- **Enhanced Readability**: Formats summaries into structured bullet points for better clarity.
 
 ### Prerequisites to run the repo
 
