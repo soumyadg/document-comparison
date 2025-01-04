@@ -1,7 +1,7 @@
 # Document Comparison Tool
 ![](llm.png)
 
-# Assignment overview documentation: Document Change Summarizer
+# Overview documentation: Document Change Summarizer
 #### Jupyter Code in repo: code_jupyter.ipynb
 
 This project involves a script designed to compare two versions of a document and summarize the changes using both GPT-3.5 and BERT models. Below is a step-by-step explanation of the process:
